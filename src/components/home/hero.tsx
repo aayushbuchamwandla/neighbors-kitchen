@@ -65,10 +65,16 @@ export function Hero() {
           </form>
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            <Button render={<Link href="/discover" />} size="lg" className="rounded-full">
+            <Button render={<Link href="/discover" />} nativeButton={false} size="lg" className="rounded-full">
               Discover Meals
             </Button>
-            <Button render={<Link href="/become-a-cook" />} size="lg" variant="outline" className="rounded-full">
+            <Button
+              render={<Link href="/become-a-cook" />}
+              nativeButton={false}
+              size="lg"
+              variant="outline"
+              className="rounded-full"
+            >
               Become a Cook
             </Button>
           </div>

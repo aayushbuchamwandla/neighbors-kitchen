@@ -65,7 +65,6 @@ export function DiscoverClient() {
       if (filters.dietary.length > 0 && !filters.dietary.every((tag) => meal.dietary.includes(tag))) return false;
       if (filters.spicyOnly && !meal.tags.includes("Spicy")) return false;
       if (filters.todayOnly && meal.pickupDay !== "Today") return false;
-      if (filters.minRating > 0 && meal.rating < filters.minRating) return false;
       if (!matchesPriceTier(meal.price, filters.priceTier)) return false;
 
       return true;

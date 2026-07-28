@@ -2431,3 +2431,7 @@ export function getMealsByCook(cookId: string): Meal[] {
 export function getMealById(id: string): Meal | undefined {
   return meals.find((meal) => meal.id === id);
 }
+
+export function getMealImagePath(meal: Meal): string {
+  return `/meals/${meal.id}.jpg`;
+}

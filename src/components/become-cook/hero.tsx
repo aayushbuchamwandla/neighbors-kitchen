@@ -26,10 +26,16 @@ export function BecomeCookHero() {
         </p>
 
         <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-          <Button render={<Link href="#apply" />} size="lg" className="rounded-full px-8">
+          <Button render={<Link href="#apply" />} nativeButton={false} size="lg" className="rounded-full px-8">
             Apply to Cook
           </Button>
-          <Button render={<Link href="#how-it-works" />} size="lg" variant="outline" className="rounded-full">
+          <Button
+            render={<Link href="#how-it-works" />}
+            nativeButton={false}
+            size="lg"
+            variant="outline"
+            className="rounded-full"
+          >
             See How It Works
           </Button>
         </div>

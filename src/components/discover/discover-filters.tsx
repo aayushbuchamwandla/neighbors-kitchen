@@ -14,7 +14,6 @@ export interface DiscoverFilterState {
   dietary: DietaryTag[];
   spicyOnly: boolean;
   todayOnly: boolean;
-  minRating: number;
   priceTier: "any" | "under12" | "12to18" | "over18";
 }
 
@@ -23,7 +22,6 @@ export const defaultFilters: DiscoverFilterState = {
   dietary: [],
   spicyOnly: false,
   todayOnly: false,
-  minRating: 0,
   priceTier: "any",
 };
 
@@ -39,8 +37,6 @@ const priceTiers: { value: DiscoverFilterState["priceTier"]; label: string }[] =
   { value: "12to18", label: "$12 – $18" },
   { value: "over18", label: "$18+" },
 ];
-
-const ratingOptions = [0, 4, 4.5, 4.8];
 
 interface DiscoverFiltersProps {
   filters: DiscoverFilterState;
@@ -150,28 +146,6 @@ export function DiscoverFilters({ filters, onChange, resultCount }: DiscoverFilt
               )}
             >
               {tier.label}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      <Separator />
-
-      <div>
-        <p className="mb-2.5 text-sm font-medium text-foreground">Minimum rating</p>
-        <div className="flex flex-wrap gap-2">
-          {ratingOptions.map((rating) => (
-            <button
-              key={rating}
-              onClick={() => onChange({ ...filters, minRating: rating })}
-              className={cn(
-                "rounded-full border px-3 py-1.5 text-xs font-medium transition-colors",
-                filters.minRating === rating
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border bg-card text-muted-foreground hover:border-primary/40"
-              )}
-            >
-              {rating === 0 ? "Any" : `${rating}+`}
             </button>
           ))}
         </div>

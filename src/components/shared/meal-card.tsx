@@ -2,12 +2,13 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Heart, Clock, Flame } from "lucide-react";
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
-import { MealArt } from "./meal-art";
 import { RatingStars } from "./rating-stars";
 import { cn } from "@/lib/utils";
+import { getMealImagePath } from "@/data/meals";
 import type { Cook, Meal } from "@/lib/types";
 
 interface MealCardProps {
@@ -47,7 +48,13 @@ export function MealCard({ meal, cook, className }: MealCardProps) {
         )}
 
         <div className="relative h-44 w-full">
-          <MealArt theme={meal.colorTheme} icon={meal.icon} className="h-full w-full" iconClassName="h-12 w-12" />
+          <Image
+            src={getMealImagePath(meal)}
+            alt={meal.name}
+            fill
+            sizes="(min-width: 1280px) 25vw, (min-width: 640px) 50vw, 100vw"
+            className="object-cover"
+          />
         </div>
 
         <div className="flex flex-col gap-2 p-4">

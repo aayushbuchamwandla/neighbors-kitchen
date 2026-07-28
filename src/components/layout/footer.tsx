@@ -87,6 +87,9 @@ export function Footer() {
             <span>Terms</span>
             <span>Privacy</span>
             <span>Trust &amp; Safety</span>
+            <Link href="/photo-credits" className="hover:text-foreground">
+              Photo Credits
+            </Link>
           </div>
         </div>
       </div>

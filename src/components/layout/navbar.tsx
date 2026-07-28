@@ -85,6 +85,7 @@ export function Navbar() {
         <div className="ml-auto flex items-center gap-2">
           <Button
             render={<Link href="/become-a-cook" />}
+            nativeButton={false}
             variant="ghost"
             className="hidden rounded-full sm:inline-flex"
           >
@@ -92,6 +93,7 @@ export function Navbar() {
           </Button>
           <Button
             render={<Link href="/discover" aria-label="Account" />}
+            nativeButton={false}
             variant="ghost"
             size="icon"
             className="rounded-full"

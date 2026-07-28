@@ -1,14 +1,14 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 import { ChevronLeft, Clock, Flame, Star, TriangleAlert, Users } from "lucide-react";
-import { MealArt } from "@/components/shared/meal-art";
 import { RatingStars } from "@/components/shared/rating-stars";
 import { CookAvatar } from "@/components/shared/cook-avatar";
 import { MealCard } from "@/components/shared/meal-card";
 import { ReserveModal } from "@/components/meal/reserve-modal";
 import { MeetYourCook } from "@/components/meal/meet-your-cook";
-import { getMealById, getMealsByCook, meals } from "@/data/meals";
+import { getMealById, getMealsByCook, getMealImagePath, meals } from "@/data/meals";
 import { getCookById } from "@/data/cooks";
 import { reviews } from "@/data/reviews";
 import { Badge } from "@/components/ui/badge";
@@ -60,12 +60,16 @@ export default async function MealDetailPage({
       <div className="grid grid-cols-1 gap-10 lg:grid-cols-2">
         <div>
           <div className="sticky top-24">
-            <MealArt
-              theme={meal.colorTheme}
-              icon={meal.icon}
-              className="aspect-square w-full rounded-3xl shadow-md"
-              iconClassName="h-24 w-24"
-            />
+            <div className="relative aspect-square w-full overflow-hidden rounded-3xl shadow-md">
+              <Image
+                src={getMealImagePath(meal)}
+                alt={meal.name}
+                fill
+                priority
+                sizes="(min-width: 1024px) 50vw, 100vw"
+                className="object-cover"
+              />
+            </div>
             <div className="mt-4 flex flex-wrap gap-2">
               {meal.tags.map((tag) => (
                 <Badge key={tag} variant="secondary">
