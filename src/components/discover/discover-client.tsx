@@ -36,8 +36,11 @@ function matchesPriceTier(price: number, tier: DiscoverFilterState["priceTier"])
 
 export function DiscoverClient() {
   const searchParams = useSearchParams();
-  const [filters, setFilters] = useState<DiscoverFilterState>(defaultFilters);
-  const [query, setQuery] = useState("");
+  const [filters, setFilters] = useState<DiscoverFilterState>(() => {
+    const cuisine = searchParams.get("cuisine");
+    return cuisine ? { ...defaultFilters, cuisines: [cuisine] } : defaultFilters;
+  });
+  const [query, setQuery] = useState(() => searchParams.get("q") ?? "");
   const [sortBy, setSortBy] = useState<SortKey>("rating");
 
   const searchParamsKey = searchParams.toString();
@@ -46,8 +49,8 @@ export function DiscoverClient() {
     setSyncedParamsKey(searchParamsKey);
     const q = searchParams.get("q");
     const cuisine = searchParams.get("cuisine");
-    if (q) setQuery(q);
-    if (cuisine) setFilters((prev) => ({ ...prev, cuisines: [cuisine] }));
+    setQuery(q ?? "");
+    setFilters((prev) => (cuisine ? { ...prev, cuisines: [cuisine] } : prev));
   }
 
   const results = useMemo(() => {
